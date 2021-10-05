@@ -2,12 +2,14 @@ require('dotenv').config({path: "./config.env"})
 const express = require('express')
 const connectDB  =require('./config/db')
 const authRoute = require('./routers/auth')
+const privateRoute = require('./routers/private')
 const errorHandler = require('./middleware/error')
 // connect to database
 connectDB()
 const app = express()
 app.use(express.json())
 app.use('/api/auth', authRoute)
+app.use('/api/private', privateRoute)
 // Error handler --> should be last piece of middleware --> uesd to catch all the errors
 app.use(errorHandler)
 
